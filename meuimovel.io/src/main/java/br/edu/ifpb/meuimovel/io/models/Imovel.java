@@ -21,7 +21,7 @@ public class Imovel {
     @Column
     private String status;
 
-    @Column
+    @Column(length = 1337)
     private String imagem;
 
 
