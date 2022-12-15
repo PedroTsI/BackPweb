@@ -2,13 +2,14 @@ package br.edu.ifpb.meuimovel.io.models;
 
 import jakarta.persistence.*;
 import org.apache.catalina.User;
+import org.w3c.dom.Text;
 
 import java.util.List;
-
+@Entity
 public class Imovel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
     @Column(unique = true)
     private String endereco;
     @Column(unique = true)
@@ -20,8 +21,11 @@ public class Imovel {
     @Column
     private String status;
 
+    @Column
+    private String imagem;
 
-    public String getId() {
+
+    public Long getId() {
         return id;
     }
 
@@ -45,4 +49,27 @@ public class Imovel {
         this.telefone = telefone;
     }
 
+    public Long getValor() {
+        return valor;
+    }
+
+    public void setValor(Long valor) {
+        this.valor = valor;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
 }

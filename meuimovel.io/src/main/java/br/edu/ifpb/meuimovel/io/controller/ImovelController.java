@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import br.edu.ifpb.meuimovel.io.services.ImovelService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/imovel")
 public class ImovelController {
@@ -13,7 +15,7 @@ public class ImovelController {
 
     @GetMapping("/{id}")
     public Imovel get(@PathVariable("id") Long id) {
-        return imovelService.get(id);
+        return imovelService.getImovel(id);
     }
 
     @PostMapping
@@ -26,13 +28,18 @@ public class ImovelController {
         return imovelService.update(id, Imovel);
     }
 
-    @PutMapping("/{id}")
-    public Imovel update(@PathVariable("id") Long id, @RequestBody Imovel Imovel) {
-        return imovelService.venderImovel(id, Imovel);
+    @PostMapping("/{id}/venda")
+    public Imovel updateVenda(@PathVariable("id") Long id, @RequestBody Imovel imovel) {
+        return imovelService.updateVenda(id, imovel);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long id) {
         imovelService.delete(id);
+    }
+
+    @GetMapping
+    public List<Imovel> listar(){
+        return imovelService.listar();
     }
 }
