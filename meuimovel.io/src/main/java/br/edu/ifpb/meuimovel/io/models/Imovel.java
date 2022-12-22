@@ -10,7 +10,7 @@ public class Imovel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
+    @Column
     private String endereco;
     @Column(unique = true)
     private String numero;

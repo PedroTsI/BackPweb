@@ -34,6 +34,8 @@ public class ImovelService {
             imovelToUpdate.setTelefone(imovel.getTelefone());
         if (imovel.getImagem() != null)
             imovelToUpdate.setImagem(imovel.getImagem());
+        if (imovel.getStatus() != null)
+            imovelToUpdate.setStatus(imovel.getStatus());
         return imovelrepository.save(imovelToUpdate);
     }
 

@@ -35,7 +35,7 @@ public class ImovelController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long id) {
-        imovelService.delete(id);
+        this.imovelService.delete(id);
     }
 
     @GetMapping
