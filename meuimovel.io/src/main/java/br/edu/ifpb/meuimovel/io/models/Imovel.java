@@ -1,5 +1,7 @@
 package br.edu.ifpb.meuimovel.io.models;
 
+import br.edu.ifpb.meuimovel.io.exception.IdZeroInvalidoException;
+import br.edu.ifpb.meuimovel.io.exception.ValorNegativoException;
 import jakarta.persistence.*;
 import org.apache.catalina.User;
 import org.w3c.dom.Text;
@@ -23,7 +25,6 @@ public class Imovel {
 
     @Column(length = 1337)
     private String imagem;
-
 
     public Long getId() {
         return id;
@@ -54,6 +55,9 @@ public class Imovel {
     }
 
     public void setValor(Long valor) {
+        if (valor < 0) {
+            throw new ValorNegativoException();
+        }
         this.valor = valor;
     }
 
@@ -62,7 +66,11 @@ public class Imovel {
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        if (Status.getStatusByString(status) != null) {
+            this.status = status;
+        } else {
+            throw new IllegalArgumentException("Status inválido");
+        }
     }
 
     public String getImagem() {
@@ -71,5 +79,12 @@ public class Imovel {
 
     public void setImagem(String imagem) {
         this.imagem = imagem;
+    }
+
+    public void setId(Long id) {
+        if (id <= 0) {
+            throw new IdZeroInvalidoException();
+        }
+        this.id = id;
     }
 }
